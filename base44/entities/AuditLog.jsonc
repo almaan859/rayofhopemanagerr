@@ -1,0 +1,48 @@
+{
+  "name": "AuditLog",
+  "type": "object",
+  "properties": {
+    "actorId": {
+      "type": "string"
+    },
+    "actorName": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "entityType": {
+      "type": "string"
+    },
+    "entityId": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "string"
+    },
+    "ipAddress": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "action"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

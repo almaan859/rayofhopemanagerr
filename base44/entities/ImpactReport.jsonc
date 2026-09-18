@@ -1,0 +1,101 @@
+{
+  "name": "ImpactReport",
+  "type": "object",
+  "properties": {
+    "campaignId": {
+      "type": "string"
+    },
+    "campaignName": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "beneficiariesReached": {
+      "type": "number"
+    },
+    "fundsUsed": {
+      "type": "number"
+    },
+    "outcomes": {
+      "type": "string"
+    },
+    "reportDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "createdBy": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "reportDate"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "donor"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    }
+  }
+}

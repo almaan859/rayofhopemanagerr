@@ -1,0 +1,117 @@
+{
+  "name": "Donation",
+  "type": "object",
+  "properties": {
+    "donorId": {
+      "type": "string"
+    },
+    "donorName": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "INR"
+    },
+    "donationDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "paymentReference": {
+      "type": "string"
+    },
+    "donationType": {
+      "type": "string",
+      "enum": [
+        "one_time",
+        "recurring",
+        "sponsorship"
+      ],
+      "default": "one_time"
+    },
+    "campaignId": {
+      "type": "string"
+    },
+    "campaignName": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "received",
+        "allocated",
+        "refunded"
+      ],
+      "default": "received"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "donorId",
+    "amount",
+    "donationDate"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    }
+  }
+}

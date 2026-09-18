@@ -1,0 +1,96 @@
+{
+  "name": "InventoryTransaction",
+  "type": "object",
+  "properties": {
+    "itemId": {
+      "type": "string"
+    },
+    "itemName": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "in",
+        "out",
+        "adjustment"
+      ],
+      "default": "in"
+    },
+    "quantity": {
+      "type": "number"
+    },
+    "campaignId": {
+      "type": "string"
+    },
+    "recordedBy": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "itemId",
+    "type",
+    "quantity"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    }
+  }
+}

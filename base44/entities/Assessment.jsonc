@@ -1,0 +1,107 @@
+{
+  "name": "Assessment",
+  "type": "object",
+  "properties": {
+    "beneficiaryId": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "assessmentName": {
+      "type": "string"
+    },
+    "score": {
+      "type": "number"
+    },
+    "maximumScore": {
+      "type": "number"
+    },
+    "assessmentDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "academicYear": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "beneficiaryId",
+    "subject",
+    "assessmentName",
+    "score",
+    "maximumScore"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "teacher"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "staff"
+          }
+        }
+      ]
+    }
+  }
+}
